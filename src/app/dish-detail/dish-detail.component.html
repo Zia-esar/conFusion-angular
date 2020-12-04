@@ -29,16 +29,15 @@
     </div>
   </div>
 
-  <div fxFlex="40">
-    <ul class="list-group"> <h2>Comments</h2>
-      <li class="list-group-item" *ngFor="let item of dish.comments">
-        <table>
-          <tr>{{item.comment}}</tr>
-          <tr>{{item.author}}</tr>
-          <tr>{{item.rating}}</tr>
-        </table>
-      </li>
-    </ul>
+  <div fxFlex="40" *ngIf = "dish">
+    <h2>Comments</h2>
+      <ul class="list-group" *ngFor="let item of dish.comments">
+        <li class="list-group-item" >
+          <p>{{item.comment}}</p>
+          <b>{{item.author}}</b>
+          {{item.date | date}}
+        </li>
+      </ul>
     <!-- <mat-list *ngIf = "dish">
       <h1><span>Comments</span></h1><br>
       <mat-list-item *ngFor="let item of dish.comments">
