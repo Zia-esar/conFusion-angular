@@ -12,8 +12,4 @@ export class LeaderService {
   getLeaders(){
     return Leaders;
   }
-
-  getCorLeader(){
-    return Leaders[0];
-  }
 }
