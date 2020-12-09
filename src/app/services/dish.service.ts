@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
 import { DISHES } from '../shared/dishes';
 import { Dish } from '../shared/dish';
+import { Observable, of } from 'rxjs';
+import { delay } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -13,18 +15,16 @@ export class DishService {
   //   return Promise.resolve(DISHES);
   // }
 
-  getDish(id: any):Promise<Dish>{
-    return Promise.resolve(DISHES.filter((dish) => dish.id = id)[0]);
+  getDish(id: any): Observable<Dish>{
+    return of(DISHES.filter((dish) => dish.id = id)[0]);
   }
 
-  getFeaturedDish(): Promise<Dish>{
-    return Promise.resolve(DISHES.filter(dish => dish.featured)[0]);
+  getFeaturedDish(): Observable<Dish>{
+    return of(DISHES.filter(dish => dish.featured)[0]);
   }
 
-  getDishes(): Promise<Dish[]>{
-    return new Promise(resolve => {
-      setTimeout(() => resolve(DISHES), 2000);
-    });
+  getDishes(): Observable<Dish[]>{
+    return of(DISHES).pipe(delay(2000));
   }
 
   // getDish(id: any): Promise<Dish>{
