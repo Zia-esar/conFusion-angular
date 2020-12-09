@@ -15,7 +15,6 @@ export class HomeComponent implements OnInit {
 
   dish: Dish;
   promotion: Promotion;
-  corLeader: Leader [];
   leader: Leader;
 
   constructor(
@@ -23,11 +22,14 @@ export class HomeComponent implements OnInit {
     private promotionservice: PromotionService,
     private leaderService: LeaderService) { }
 
+
+
   ngOnInit() {
     this.dishservice.getFeaturedDish().then(dish => this.dish = dish);
-    this.promotion = this.promotionservice.getFeaturedPromotion();
-    this.corLeader = this.leaderService.getLeaders();
-    this.leader = this.corLeader[0];
-
+    //this.promotion = this.promotionservice.getFeaturedPromotion();
+    this.promotionservice.getFeaturedPromotion().then(promo => this.promotion = promo);
+    // this.leader = this.leaderService.getLeader();
+    this.leaderService.getLeader().then(leader => this.leader = leader);
+    //this.leaderService.getLeader().then(leader => this.corLeader = leader);
   }
 }
