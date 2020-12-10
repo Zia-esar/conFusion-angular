@@ -29,9 +29,12 @@
           </p>
         </mat-card-content>
         <mat-card-actions>
+          <button mat-button [routerLink]="['/dishdetail', prev]"><span class="fa fa-chevron-left fa-lg"></span></button>
           <button mat-button (click)="goBack()">BACK</button>
           <button mat-button>LIKE</button>
           <button mat-button>SHARE</button>
+          <span class="flex-spacer"></span>
+        <button mat-button [routerLink]="['/dishdetail', next]"><span class="fa fa-chevron-right fa-lg"></span></button>
         </mat-card-actions>
       </mat-card>
     </div>
@@ -49,5 +52,19 @@
           {{item.date | date}}
         </li>
       </ul>
+
+      <form novalidate >
+        <div id="comments" style="border: 1px solid rgb(207, 203, 203); margin-top: 10px; padding: 10px;">
+          <div class="mb-3">
+            <input type="text" class="form-control" id="author" placeholder="Name" [(ngModel)] ='userName' [ngModelOptions]="{standalone: true}">
+          </div>
+            <label for="ratings" class="form-label">Ratings</label><br>
+            <input type="range" class="form-range" min="0" max="5" step="1" id="ratings">
+          <div class="mb-3">
+            <textarea class="form-control" [(ngModel)]='userComment' id="comment-area" rows="3" placeholder="Enter your comment here.." [ngModelOptions]="{standalone: true}"></textarea>
+          </div>
+          <button class="btn btn-primary" type="button" (click)="addComment()">Submit</button>
+        </div>
+      </form>
   </div>
 </div>
